@@ -7,7 +7,7 @@ How to use that library ?
 You create a few mixin classes they are same as normal classes. But the self
 here is the object that will be mixed in. First import the library.
 
->>> from mixin import *
+>>> from mixin import include
 
 Lets create a mixin class. The philosophy behind mixins is to create little 
 classes that can be mixed in other classes. In Ruby if your class has a method
@@ -20,8 +20,7 @@ Lets implement here a simple one :
 ...
 
 >>> class MyClass(object):
-...		__metaclass__ = MetaMixer
-...		includes = [EnumerableMixin]
+...		include(EnumerableMixin)
 ...	
 ...		def __init__(self, *args):
 ...			self.arr = args
@@ -35,7 +34,7 @@ Lets implement here a simple one :
 >>> m.map(lambda s: s.upper()) == ["HELLO", "DUMMY"]
 True
 
-You can also mix a class atr runtime also :
+You can also mix a class attr runtime also :
 
 >>> class AnotherMixin(object):
 ...		def mixed(self):
@@ -43,8 +42,9 @@ You can also mix a class atr runtime also :
 ...
 
 >>> MyClass.extend(AnotherMixin)
->>> m = MyClass()
+>>> m = MyClass("hello", "dummy")
 >>> m.mixed()
 'mixed'
+
 
 Easy :)
