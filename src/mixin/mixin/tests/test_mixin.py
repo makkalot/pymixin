@@ -1,4 +1,4 @@
-from mixin import MetaMixer
+from mixin import include
 
 class MixinClass(object):
 
@@ -16,8 +16,7 @@ class EnumMixin(object):
 
 class M(object):
 	
-	__metaclass__ = MetaMixer
-	includes = [MixinClass,EnumMixin]
+	include(MixinClass,EnumMixin)
 
 	def __init__(self, a, b):
 		self.a = a
@@ -37,8 +36,7 @@ def test_mixer():
 	m = M(1,2)
 	assert m.mixed_method() == "mixed"
 	assert m.map() == [1,2]
- 
+ 	
 	M.extend(AnotherMixin)
 	m = M(2,3)
 	m.extended() == "extended"
-
